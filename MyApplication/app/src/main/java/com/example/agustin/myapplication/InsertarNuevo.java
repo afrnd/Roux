@@ -8,7 +8,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.Map;
 
 public class InsertarNuevo extends AppCompatActivity {
@@ -47,5 +51,24 @@ public class InsertarNuevo extends AppCompatActivity {
 
             }
         });
+    }
+
+    protected void onPause() {
+        super.onPause();
+
+        try
+        {
+
+            FileOutputStream fos  = new FileOutputStream("hashmap.ser");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(mp);
+            oos.close();
+            fos.close();
+
+            System.out.printf("Serialized HashMap data is saved in hashmap.ser");
+        }catch(IOException ioe)
+        {
+            ioe.printStackTrace();
+        }
     }
 }
