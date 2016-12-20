@@ -79,14 +79,15 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         try
         {
-            Toast toast3 = Toast.makeText(this, "Entre2", Toast.LENGTH_SHORT);
-            toast3.show();
+
             FileInputStream fis = this.openFileInput(filename);
 
             ObjectInputStream ois = new ObjectInputStream(fis);
             mp = (HashMap) ois.readObject();
             ois.close();
             fis.close();
+            Toast toast3 = Toast.makeText(this, "EN-PAUSE", Toast.LENGTH_SHORT);
+            toast3.show();
 
         }catch(IOException ioe)
         {

@@ -1,5 +1,6 @@
 package com.example.agustin.myapplication;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ public class InsertarNuevo extends AppCompatActivity {
     private Button bt;
     private Map<String, Float> mp;
     private TextView texto;
+    public static String filename = "hashmap.ser";
 
 
 
@@ -59,15 +61,18 @@ public class InsertarNuevo extends AppCompatActivity {
         try
         {
 
-            FileOutputStream fos  = new FileOutputStream("hashmap.ser");
+            FileOutputStream fos  = this.openFileOutput(filename, Context.MODE_PRIVATE);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(mp);
             oos.close();
             fos.close();
+            Toast toast3 = Toast.makeText(this, "Entre", Toast.LENGTH_SHORT);
+            toast3.show();
 
             System.out.printf("Serialized HashMap data is saved in hashmap.ser");
         }catch(IOException ioe)
         {
+
             ioe.printStackTrace();
         }
     }
