@@ -77,11 +77,15 @@ public class ListViewAdapter extends BaseAdapter {
         txtTitle.setText(titulos[position]);
         bar.setNumStars(5);
         bar.setRating(Float.parseFloat(contenido[position]));
-        bar.setEnabled(false);
+
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mp.put(titulo, bar.getRating());
+                Toast toast3 = Toast.makeText(context, mp.toString(), Toast.LENGTH_SHORT);
+                toast3.show();
+                guardarMapeo(context);
+
 
             }
         });
@@ -89,7 +93,28 @@ public class ListViewAdapter extends BaseAdapter {
 
 
 
+
+
         return itemView;
+    }
+
+    public void guardarMapeo(Context ct){
+        try
+        {
+
+            FileOutputStream fos  = ct.openFileOutput("hasmap.ser", Context.MODE_PRIVATE);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(mp);
+            oos.close();
+            fos.close();
+
+
+            System.out.printf("Serialized HashMap data is saved in hashmap.ser");
+        }catch(IOException ioe)
+        {
+
+            ioe.printStackTrace();
+        }
     }
 
 

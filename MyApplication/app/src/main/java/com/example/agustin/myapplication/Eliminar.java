@@ -22,6 +22,7 @@ public class Eliminar extends AppCompatActivity {
     private String[] items;
     private String[] items2;
     private Map<String, Float> mp;
+    private ListViewAdapter adaptador;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +57,7 @@ public class Eliminar extends AppCompatActivity {
             i1++;
         }
 
-        ListViewAdapter adaptador = new ListViewAdapter(this, items,items2,mp);
+        adaptador = new ListViewAdapter(this, items,items2,mp);
         lv.setAdapter(adaptador);
 
 
@@ -69,13 +70,13 @@ public class Eliminar extends AppCompatActivity {
         try
         {
 
+
             FileOutputStream fos  = this.openFileOutput("hasmap.ser", Context.MODE_PRIVATE);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(mp);
+            oos.writeObject(adaptador.mp);
             oos.close();
             fos.close();
-            Toast toast3 = Toast.makeText(this, "Entre", Toast.LENGTH_SHORT);
-            toast3.show();
+
 
             System.out.printf("Serialized HashMap data is saved in hashmap.ser");
         }catch(IOException ioe)
