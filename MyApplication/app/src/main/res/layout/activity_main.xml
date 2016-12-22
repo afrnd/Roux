@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="66dp"
         android:id="@+id/button3"
-        android:layout_below="@+id/button2"
+        android:layout_below="@+id/btMostrar"
         android:layout_centerHorizontal="true" />
 
     <Button
@@ -37,7 +37,7 @@
         android:text="Mostrar Todos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/button2"
+        android:id="@+id/btMostrar"
         android:layout_marginTop="88dp"
         android:layout_below="@+id/btAgregar"
         android:layout_centerHorizontal="true" />

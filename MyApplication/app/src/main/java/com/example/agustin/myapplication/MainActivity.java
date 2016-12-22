@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     protected Button c;
     protected Map<String, Float> mp;
     public static String filename = "hashmap.ser";
+    protected Button mostrar;
 
 
     @Override
@@ -41,6 +42,14 @@ public class MainActivity extends AppCompatActivity {
                 agregar();
             }
         });
+        mostrar = (Button) findViewById(R.id.btMostrar);
+        mostrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                agregar2();
+            }
+        });
+
     }
 
     private  void agregar(){
@@ -48,6 +57,12 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("MAPEO", (Serializable) mp);
         startActivity(intent);
 
+    }
+
+    private void agregar2(){
+        Intent intent = new Intent(this, Eliminar.class);
+        intent.putExtra("MAPEO", (Serializable) mp);
+        startActivity(intent);
     }
 
     @Override
