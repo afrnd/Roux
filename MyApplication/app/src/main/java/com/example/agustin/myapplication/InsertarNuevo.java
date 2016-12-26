@@ -5,9 +5,13 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,7 +20,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.Map;
 
-public class InsertarNuevo extends AppCompatActivity {
+public class InsertarNuevo extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     private RatingBar rt;
     private EditText txt;
@@ -24,6 +28,8 @@ public class InsertarNuevo extends AppCompatActivity {
     private Map<String, Float> mp;
     private TextView texto;
     public static String filename = "hashmap.ser";
+    private int cat;
+    private Spinner sp;
 
 
 
@@ -48,11 +54,18 @@ public class InsertarNuevo extends AppCompatActivity {
             public void onClick(View v) {
                 float cant = rt.getRating();
                 String name = txt.getText().toString();
-                mp.put(name,cant);
+                mp.put(cat+name,cant);
                 texto.setText(mp.toString());
 
             }
         });
+
+        sp = (Spinner) this.findViewById(R.id.spinner);
+        String array[] = {"Cine y series", "Comidas y bebidas" , "Restaurantes", "Deportes", "Libros", "Hoteles", "Lugares", "Teatros y obras", "Hospitales"};
+        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, array);
+        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sp.setAdapter(spinnerArrayAdapter);
+        sp.setOnItemSelectedListener(this);
     }
 
     protected void onPause() {
@@ -74,5 +87,16 @@ public class InsertarNuevo extends AppCompatActivity {
 
             ioe.printStackTrace();
         }
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+        cat = parent.getSelectedItemPosition();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }

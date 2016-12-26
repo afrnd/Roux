@@ -1,6 +1,8 @@
 package com.example.agustin.myapplication;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.MarginLayoutParamsCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +31,7 @@ public class ListViewAdapter extends BaseAdapter {
     private String[] contenido;
     private LayoutInflater inflater;
     private Map<String,Float> mp;
+    private Drawable dr [];
 
     public ListViewAdapter(Context context, String[] titulos, String[] valoraciones , Map<String, Float> mp ){
         this.context = context;
@@ -36,6 +39,12 @@ public class ListViewAdapter extends BaseAdapter {
         this.titulos = titulos;
         this.contenido = valoraciones;
         this.mp = mp;
+
+        dr = new Drawable[8];
+
+
+
+
     }
 
     @Override
@@ -57,7 +66,7 @@ public class ListViewAdapter extends BaseAdapter {
         return mp;
     }
 
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
         ImageView imgImg;
 
@@ -83,16 +92,23 @@ public class ListViewAdapter extends BaseAdapter {
             bt = (Button) itemView.findViewById(R.id.botonLista);
 
 
-            // Capture position and set to the TextViews
-            final String titulo = titulos[position];
-            txtTitle.setText(titulos[position]);
+
+        final String titulo;
+        if(titulos[position].length()>0) {    // Capture position and set to the TextViews
+             titulo = titulos[position].substring(1);
+        }
+        else{
+            titulo = titulos[position];
+        }
+
+        txtTitle.setText(titulo);
             bar.setNumStars(5);
             bar.setRating(Float.parseFloat(contenido[position]));
 
             bt.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mp.put(titulo, bar.getRating());
+                    mp.put(titulos[position], bar.getRating());
                 }
             });
 

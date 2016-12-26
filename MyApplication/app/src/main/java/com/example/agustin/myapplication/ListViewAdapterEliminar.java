@@ -30,6 +30,8 @@ public class ListViewAdapterEliminar extends BaseAdapter {
         this.titulos = titulos;
         this.contenido = valoraciones;
         this.mp = mp;
+
+
     }
 
     @Override
@@ -51,7 +53,7 @@ public class ListViewAdapterEliminar extends BaseAdapter {
         return mp;
     }
 
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
         ImageView imgImg;
 
@@ -68,7 +70,7 @@ public class ListViewAdapterEliminar extends BaseAdapter {
         //http://developer.android.com/intl/es/reference/android/view/LayoutInflater.html
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        itemView = inflater.inflate(R.layout.list_row, parent, false);
+        itemView = inflater.inflate(R.layout.list_row2, parent, false);
 
         // Locate the TextViews in listview_item.xml
         imgImg = (ImageView) itemView.findViewById(R.id.imagen_single_post_circuito);
@@ -78,15 +80,21 @@ public class ListViewAdapterEliminar extends BaseAdapter {
 
 
         // Capture position and set to the TextViews
-        final String titulo = titulos[position];
-        txtTitle.setText(titulos[position]);
+        final String titulo;
+        if(titulos[position].length()>0) {    // Capture position and set to the TextViews
+            titulo = titulos[position].substring(1);
+        }
+        else{
+            titulo = titulos[position];
+        }
+        txtTitle.setText(titulo);
         bar.setNumStars(5);
         bar.setRating(Float.parseFloat(contenido[position]));
 
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mp.remove(titulo);
+                mp.remove(titulos[position]);
             }
         });
 
