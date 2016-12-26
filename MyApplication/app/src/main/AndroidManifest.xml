@@ -16,7 +16,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".InsertarNuevo" />
-        <activity android:name=".Eliminar"></activity>
+        <activity android:name=".Eliminar" />
     </application>
 
 </manifest>

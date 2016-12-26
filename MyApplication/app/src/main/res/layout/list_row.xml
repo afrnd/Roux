@@ -72,7 +72,7 @@
     </LinearLayout>
 
     <Button
-        android:text="Eliminar"
+        android:text="Modificar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/botonLista"
