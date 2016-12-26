@@ -48,9 +48,9 @@ public class Mostrar extends AppCompatActivity {
         Iterator<Map.Entry<String, Float>> it = set.iterator();
 
         while(it.hasNext()){
-           Map.Entry<String,Float> entrada = it.next();
-           items[i] =  entrada.getKey() ;
-           i++;
+            Map.Entry<String,Float> entrada = it.next();
+            items[i] =  entrada.getKey() ;
+            i++;
         }
 
         Set<Map.Entry<String, Float>> set1 = mp.entrySet();
@@ -68,7 +68,6 @@ public class Mostrar extends AppCompatActivity {
         adaptador = new ListViewAdapter(this, items,items2,mp);
         lv.setAdapter(adaptador);
 
-
     }
 
 
@@ -77,8 +76,7 @@ public class Mostrar extends AppCompatActivity {
 
         try
         {
-            Toast toast4  = Toast.makeText(this, mp.toString(), Toast.LENGTH_SHORT);
-            toast4.show();
+
 
             FileOutputStream fos  = this.openFileOutput("hashmap.ser", Context.MODE_PRIVATE);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -93,8 +91,7 @@ public class Mostrar extends AppCompatActivity {
             mp = (HashMap) ois.readObject();
             ois.close();
             fis.close();
-            Toast toast3 = Toast.makeText(this, mp.toString(), Toast.LENGTH_SHORT);
-            toast3.show();
+
 
 
             System.out.printf("Serialized HashMap data is saved in hashmap.ser");

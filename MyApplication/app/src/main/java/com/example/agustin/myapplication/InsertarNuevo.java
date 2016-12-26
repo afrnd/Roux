@@ -66,8 +66,7 @@ public class InsertarNuevo extends AppCompatActivity {
             oos.writeObject(mp);
             oos.close();
             fos.close();
-            Toast toast3 = Toast.makeText(this, "Entre", Toast.LENGTH_SHORT);
-            toast3.show();
+
 
             System.out.printf("Serialized HashMap data is saved in hashmap.ser");
         }catch(IOException ioe)

@@ -17,6 +17,7 @@
         </activity>
         <activity android:name=".InsertarNuevo" />
         <activity android:name=".Eliminar" />
+        <activity android:name=".Mostrar" />
     </application>
 
 </manifest>

@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mp = new HashMap<>();
-        mp.put("peti", (float) 19.9);
 
         setContentView(R.layout.activity_main);
         c = (Button) findViewById(R.id.btAgregar);
@@ -93,10 +92,7 @@ public class MainActivity extends AppCompatActivity {
             oos.writeObject(mp);
             oos.close();
             fos.close();
-            Toast toast3 = Toast.makeText(this, "Entre", Toast.LENGTH_SHORT);
-            toast3.show();
 
-            System.out.printf("Serialized HashMap data is saved in hashmap.ser");
         }catch(IOException ioe)
         {
 
@@ -116,8 +112,7 @@ public class MainActivity extends AppCompatActivity {
             mp = (HashMap) ois.readObject();
             ois.close();
             fis.close();
-            Toast toast3 = Toast.makeText(this, "EN-PAUSE", Toast.LENGTH_SHORT);
-            toast3.show();
+
 
         }catch(IOException ioe)
         {
