@@ -56,6 +56,8 @@ public class InsertarNuevo extends AppCompatActivity implements AdapterView.OnIt
                 String name = txt.getText().toString();
                 mp.put(cat+name,cant);
                 texto.setText(mp.toString());
+                Toast toast = Toast.makeText(getApplicationContext(),"Entidad insertada correctamente!", Toast.LENGTH_SHORT);
+                toast.show();
 
             }
         });

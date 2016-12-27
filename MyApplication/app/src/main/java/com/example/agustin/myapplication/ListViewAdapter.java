@@ -1,6 +1,7 @@
 package com.example.agustin.myapplication;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.MarginLayoutParamsCompat;
@@ -35,12 +36,27 @@ public class ListViewAdapter extends BaseAdapter {
 
     public ListViewAdapter(Context context, String[] titulos, String[] valoraciones , Map<String, Float> mp ){
         this.context = context;
-        this.imagenes = imagenes;
+
         this.titulos = titulos;
         this.contenido = valoraciones;
         this.mp = mp;
 
-        dr = new Drawable[8];
+
+
+
+        imagenes = new int[]{R.drawable.movie
+                ,R.drawable.comifa
+                ,R.drawable.resto
+                ,R.drawable.depor
+                ,R.drawable.libros
+                ,R.drawable.hotel
+                ,R.drawable.places
+                ,R.drawable.teatr
+                ,R.drawable.hospi};
+
+
+
+
 
 
 
@@ -70,6 +86,7 @@ public class ListViewAdapter extends BaseAdapter {
 
         ImageView imgImg;
 
+
         View itemView;
 
 
@@ -86,10 +103,11 @@ public class ListViewAdapter extends BaseAdapter {
             itemView = inflater.inflate(R.layout.list_row, parent, false);
 
             // Locate the TextViews in listview_item.xml
-            imgImg = (ImageView) itemView.findViewById(R.id.imagen_single_post_circuito);
+            imgImg = (ImageView) itemView.findViewById(R.id.imagen);
             txtTitle = (TextView) itemView.findViewById(R.id.item);
             bar = (RatingBar) itemView.findViewById(R.id.rtBar);
             bt = (Button) itemView.findViewById(R.id.botonLista);
+
 
 
 
@@ -100,6 +118,15 @@ public class ListViewAdapter extends BaseAdapter {
         else{
             titulo = titulos[position];
         }
+        String cad="";
+        cad=cad+titulos[position].charAt(0);
+        int a=Integer.parseInt(cad);
+        imgImg.setImageResource(imagenes[a]);
+
+
+
+
+
 
         txtTitle.setText(titulo);
             bar.setNumStars(5);
@@ -109,6 +136,8 @@ public class ListViewAdapter extends BaseAdapter {
                 @Override
                 public void onClick(View v) {
                     mp.put(titulos[position], bar.getRating());
+                    Toast toast = Toast.makeText(context,"Modificado. Refresque la pantalla", Toast.LENGTH_SHORT);
+                    toast.show();
                 }
             });
 

@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Map;
 
@@ -26,10 +27,19 @@ public class ListViewAdapterEliminar extends BaseAdapter {
 
     public ListViewAdapterEliminar(Context context, String[] titulos, String[] valoraciones , Map<String, Float> mp ){
         this.context = context;
-        this.imagenes = imagenes;
+
         this.titulos = titulos;
         this.contenido = valoraciones;
         this.mp = mp;
+        imagenes = new int[]{R.drawable.movie
+                ,R.drawable.comifa
+                ,R.drawable.resto
+                ,R.drawable.depor
+                ,R.drawable.libros
+                ,R.drawable.hotel
+                ,R.drawable.places
+                ,R.drawable.teatr
+                ,R.drawable.hospi};
 
 
     }
@@ -87,6 +97,10 @@ public class ListViewAdapterEliminar extends BaseAdapter {
         else{
             titulo = titulos[position];
         }
+        String cad="";
+        cad=cad+titulos[position].charAt(0);
+        int a=Integer.parseInt(cad);
+        imgImg.setImageResource(imagenes[a]);
         txtTitle.setText(titulo);
         bar.setNumStars(5);
         bar.setRating(Float.parseFloat(contenido[position]));
@@ -95,6 +109,8 @@ public class ListViewAdapterEliminar extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 mp.remove(titulos[position]);
+                Toast toast = Toast.makeText(context,"Eliminado. Refresque la pantalla", Toast.LENGTH_SHORT);
+                toast.show();
             }
         });
 
