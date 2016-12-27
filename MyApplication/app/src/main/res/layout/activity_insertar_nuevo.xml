@@ -10,40 +10,40 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.agustin.myapplication.InsertarNuevo">
 
-    <EditText
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etTexto"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="50dp" />
+
+    <RatingBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"
-        android:id="@+id/etTexto" />
+        android:layout_marginTop="53dp"
+        android:id="@+id/rtBar"
+        android:layout_below="@+id/spinner"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:text="Cargar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/btSub"
+        android:layout_marginTop="56dp"
         android:layout_below="@+id/rtBar"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="108dp"
-        android:id="@+id/btSub" />
-
-    <RatingBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:id="@+id/rtBar"
-        android:layout_below="@+id/etTexto"
         android:layout_centerHorizontal="true" />
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="fill_parent"
+    <EditText
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/rtBar"
-        android:layout_alignParentLeft="false"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="56dp" />
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_marginTop="67dp"
+        android:id="@+id/etTexto"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

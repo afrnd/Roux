@@ -1,5 +1,8 @@
 package com.example.agustin.myapplication;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -20,6 +23,9 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.Map;
 
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
+
 public class InsertarNuevo extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     private RatingBar rt;
@@ -30,6 +36,8 @@ public class InsertarNuevo extends AppCompatActivity implements AdapterView.OnIt
     public static String filename = "hashmap.ser";
     private int cat;
     private Spinner sp;
+
+    private NotificationManagerCompat mNotifiacation;
 
 
 
@@ -58,6 +66,8 @@ public class InsertarNuevo extends AppCompatActivity implements AdapterView.OnIt
 
                 Toast toast = Toast.makeText(getApplicationContext(),"Entidad insertada correctamente!", Toast.LENGTH_SHORT);
                 toast.show();
+
+                displayNotification(name);
 
             }
         });
@@ -100,5 +110,27 @@ public class InsertarNuevo extends AppCompatActivity implements AdapterView.OnIt
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    protected void displayNotification(String s){
+        Intent i = new Intent(this, MainActivity.class);
+        i.putExtra("notificationID", 1);
+
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, i, 0);
+        NotificationManager nm = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+
+        CharSequence ticker ="CalificApp";
+        CharSequence contentTitle = s;
+        CharSequence contentText = "Se ha insertado una nueva entidad!";
+        Notification noti = new NotificationCompat.Builder(this)
+                .setContentIntent(pendingIntent)
+                .setTicker(ticker)
+                .setContentTitle(contentTitle)
+                .setContentText(contentText)
+                .setSmallIcon(R.drawable.comifa)
+                .addAction(R.drawable.comifa, ticker, pendingIntent)
+                .setVibrate(new long[] {100, 250, 100, 500})
+                .build();
+        nm.notify(1,noti);
     }
 }
