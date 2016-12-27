@@ -26,7 +26,7 @@ public class InsertarNuevo extends AppCompatActivity implements AdapterView.OnIt
     private EditText txt;
     private Button bt;
     private Map<String, Float> mp;
-    private TextView texto;
+
     public static String filename = "hashmap.ser";
     private int cat;
     private Spinner sp;
@@ -41,7 +41,7 @@ public class InsertarNuevo extends AppCompatActivity implements AdapterView.OnIt
         rt = (RatingBar) findViewById(R.id.rtBar);
         txt = (EditText) findViewById(R.id.etTexto);
         bt = (Button) findViewById(R.id.btSub);
-        texto = (TextView) findViewById(R.id.txtMostrar);
+
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
 
@@ -55,7 +55,7 @@ public class InsertarNuevo extends AppCompatActivity implements AdapterView.OnIt
                 float cant = rt.getRating();
                 String name = txt.getText().toString();
                 mp.put(cat+name,cant);
-                texto.setText(mp.toString());
+
                 Toast toast = Toast.makeText(getApplicationContext(),"Entidad insertada correctamente!", Toast.LENGTH_SHORT);
                 toast.show();
 

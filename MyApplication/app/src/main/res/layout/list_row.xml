@@ -63,7 +63,8 @@
                     <RatingBar
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/rtBar" />
+                        android:id="@+id/rtBar"
+                        style="@style/Base.Widget.AppCompat.RatingBar" />
 
                 </LinearLayout>
 
@@ -71,11 +72,15 @@
         </LinearLayout>
     </LinearLayout>
 
+
+
     <Button
         android:text="Modificar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/botonLista"
         android:layout_weight="2.75" />
+
+
 
 </LinearLayout>
